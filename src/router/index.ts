@@ -11,10 +11,11 @@ const router = createRouter({
       component: App
     },
     
+    
     {
-      path: '/How',
+      path: '/how',
       name: 'ToDos',
-      component: () => import('../components/ToDos.vue/')
+      component: ToDos,
     },
   ]
 })
