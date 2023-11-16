@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Tache a faire: </h1>
+    <h1>Ma Liste de Tâches</h1>
     <ul>
       <li :key="item.id" v-for="(item, index) in localTodoEntries">
         <ToDoItem
@@ -18,9 +18,9 @@
 import ToDoItem from "./ToDoItem.vue";
 
 export default {
-  name: 'ToDos',
+  name: "ToDos",
   components: {
-    ToDoItem
+    ToDoItem,
   },
   props: ["todoEntries"],
   computed: {
@@ -29,17 +29,17 @@ export default {
         return this.todoEntries;
       },
       set(updatedTodoEntries) {
-        this.$emit('update:todoEntries', updatedTodoEntries);
-      }
-    }
+        this.$emit("update:todoEntries", updatedTodoEntries);
+      },
+    },
   },
   methods: {
     toggleComplete(itemId) {
-      const updatedEntries = this.todoEntries.map(item => {
+      const updatedEntries = this.todoEntries.map((item) => {
         if (item.id === itemId) {
           return {
             ...item,
-            completed: !item.completed
+            completed: !item.completed,
           };
         }
         return item;
@@ -48,11 +48,22 @@ export default {
     },
     deleteItem(index) {
       this.todoEntries.splice(index, 1);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Your styles here */
+h1 {
+  font-size: 24px;
+  color: #673ab7; /* Purple color */
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Your other styles here */
 </style>

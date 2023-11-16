@@ -1,25 +1,28 @@
 <template>
-  <div :class="{'completed': todoItem.completed}">
-    <p :style="{ color: todoItem.completed ? 'blue' : 'black' }">{{ todoItem.title }}</p>
-    <button @click="markComplete">Fait</button>
-    <button @click="deleteItem">Delete</button> <!-- Add a delete button -->
+  <div :class="{ completed: todoItem.completed }">
+    <p :style="{ color: todoItem.completed ? '#007bff' : 'black' }">
+      {{ todoItem.title }}
+    </p>
+    <div>
+      <button @click="markComplete">Fait</button>
+      <button @click="deleteItem">Supprimer</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ToDoItem',
-  props: ['todoItem'],
+  name: "ToDoItem",
+  props: ["todoItem"],
   methods: {
     markComplete() {
-      this.todoItem.completed = !this.todoItem.completed; // Toggles the completed property
-      this.$emit('toggle-complete', this.todoItem.id);
+      this.todoItem.completed = !this.todoItem.completed;
+      this.$emit("toggle-complete", this.todoItem.id);
     },
     deleteItem() {
-      console.log(this.todoItem.id);
-      this.$emit('delete-item', this.todoItem.id); // Emit an event to delete the item
-    }
-  }
+      this.$emit("delete-item", this.todoItem.id);
+    },
+  },
 };
 </script>
 
@@ -27,4 +30,36 @@ export default {
 .completed {
   text-decoration: line-through;
 }
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+button {
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+button:first-child {
+  background-color: #17a2b8; /* Teal color */
+  color: white;
+  margin-right: 8px;
+}
+
+button:last-child {
+  background-color: #dc3545; /* Red color */
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Your other styles here */
 </style>
